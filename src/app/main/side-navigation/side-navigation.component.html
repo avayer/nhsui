@@ -1,0 +1,68 @@
+<div class="layout">
+  <!-- Top Bar -->
+  <div class="topbar">
+    <p-button 
+      icon="pi pi-bars" 
+      (click)="sidebarVisible = true"
+      styleClass="p-button-text p-button-lg md:hidden">
+    </p-button>
+    <span class="text-xl font-bold">Dashboard</span>
+  </div>
+
+  <!-- Sidebar for Desktop -->
+  <div class="sidebar hidden md:block">
+    <div class="sidebar-header">
+      <img src="assets/logo.png" alt="Logo" class="logo"/>
+      <h2>Admin Panel</h2>
+    </div>
+    
+    <div class="menu">
+      <ul>
+        <li *ngFor="let item of menuItems" 
+            [routerLink]="item.routerLink"
+            routerLinkActive="active-link"
+            class="menu-item">
+            <i [class]="item.icon"></i>
+            <span>{{item.label}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Mobile Sidebar -->
+  <p-sidebar 
+    [(visible)]="sidebarVisible"
+    [modal]="true"
+    [showCloseIcon]="false"
+    styleClass="p-sidebar-md">
+    <div class="mobile-sidebar">
+      <div class="sidebar-header">
+        <img src="assets/logo.png" alt="Logo" class="logo"/>
+        <h2>Admin Panel</h2>
+        <p-button 
+          icon="pi pi-times" 
+          (click)="sidebarVisible = false"
+          styleClass="p-button-text p-button-lg close-button">
+        </p-button>
+      </div>
+      
+      <div class="menu">
+        <ul>
+          <li *ngFor="let item of menuItems" 
+              [routerLink]="item.routerLink"
+              routerLinkActive="active-link"
+              (click)="sidebarVisible = false"
+              class="menu-item">
+              <i [class]="item.icon"></i>
+              <span>{{item.label}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </p-sidebar>
+
+  <!-- Main Content -->
+  <div class="content" [ngClass]="{'md:ml-250': !sidebarVisible}">
+    <router-outlet></router-outlet>
+  </div>
+</div>

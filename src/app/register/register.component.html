@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <div class="row min-vh-100">
+        <div class="col-md-6 p-4 background-rb d-flex align-items-center justify-content-center">
+            <div class="form-container">
+                <h3 class="text-white mb-4">Registration Form</h3>
+                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label text-white">First Name <sup>*</sup></label>
+                        <input type="text" class="form-control form-control-sm" id="firstName" formControlName="firstName"
+                            [ngClass]="{'is-invalid': isFieldInvalid('firstName')}">
+                        <div class="invalid-feedback" *ngIf="isFieldInvalid('firstName')">
+                            <div *ngIf="registerForm.get('firstName')?.errors?.['required']">
+                                First name is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label text-white">Last Name <sup>*</sup></label>
+                        <input type="text" class="form-control form-control-sm" id="lastName" formControlName="lastName"
+                            [ngClass]="{'is-invalid': isFieldInvalid('lastName')}">
+                        <div class="invalid-feedback" *ngIf="isFieldInvalid('lastName')">
+                            <div *ngIf="registerForm.get('lastName')?.errors?.['required']">
+                                Last name is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label text-white">Email <sup>*</sup></label>
+                        <input type="email" class="form-control form-control-sm" id="email" formControlName="email"
+                            [ngClass]="{'is-invalid': isFieldInvalid('email')}">
+                        <div class="invalid-feedback" *ngIf="isFieldInvalid('email')">
+                            {{ getEmailErrorMessage() }}
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="organization" class="form-label form-control-sm text-white">Organization <sup>*</sup></label>
+                        <select class="form-select" id="organization" formControlName="organization"
+                            [ngClass]="{'is-invalid': isFieldInvalid('organization')}">
+                            <option value="" disabled selected>Type any ICB/Borough/PCN/Practice</option>
+                            <option *ngFor="let org of organizations" [value]="org.name">
+                                {{org.name}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="isFieldInvalid('organization')">
+                            Please select an organization
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="reason" class="form-label text-white">Reason for Registration <sup>*</sup></label>
+                        <textarea class="form-control form-control-sm" id="reason" rows="3" formControlName="reason"
+                            [ngClass]="{'is-invalid': isFieldInvalid('reason')}"></textarea>
+                        <div class="invalid-feedback" *ngIf="isFieldInvalid('reason')">
+                            <div *ngIf="registerForm.get('reason')?.errors?.['required']">
+                                Reason is required
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-outline-light" [disabled]="registerForm.invalid">
+                            Register
+                        </button>
+                    </div>
+
+                    <div class="d-grid gap-2 mt-2">
+                        <a class="loginLink" [routerLink]="loginLink">Already have an account? Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6 p-0 d-none d-md-block">
+            <div class="image-container h-100">
+                <img src="assets/images/doctor-bg.jpg" alt="Registration" class="registration-image">
+            </div>
+        </div>
+    </div>
+</div>

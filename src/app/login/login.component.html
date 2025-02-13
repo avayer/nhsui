@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <div class="row min-vh-100">
+      <div class="col-md-6 p-0 d-none d-md-block">
+        <div class="image-container h-100">
+          <img 
+            src="assets/images/doctor-bg.jpg" 
+            alt="Login" 
+            class="login-image"
+          >
+        </div>
+      </div>
+  
+      <div class="col-md-6 p-4 background-rb d-flex align-items-center justify-content-center">
+        <div class="form-container">
+          <h3 class="text-white mb-4">Login</h3>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+              <label for="email" class="form-label text-white">Email <sup>*</sup></label>
+              <input
+                type="email"
+                class="form-control form-control-sm"
+                id="email"
+                formControlName="email"
+                [ngClass]="{'is-invalid': isFieldInvalid('email')}">
+              <div class="invalid-feedback" *ngIf="isFieldInvalid('email')">
+                {{ getEmailErrorMessage() }}
+              </div>
+            </div>
+  
+            <div class="mb-4">
+              <label for="password" class="form-label text-white">Password <sup>*</sup></label>
+              <div class="input-group">
+                <input
+                  [type]="showPassword ? 'text' : 'password'"
+                  class="form-control form-control-sm"
+                  id="password"
+                  formControlName="password"
+                  [ngClass]="{'is-invalid': isFieldInvalid('password')}"
+                >
+                <button 
+                  class="btn btn-outline-light" 
+                  type="button"
+                  (click)="togglePasswordVisibility()"
+                >
+                  <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+                </button>
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('password')">
+                  <div *ngIf="loginForm.get('password')?.errors?.['required']">
+                    Password is required
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="mb-4 text-end">
+              <a href="#" class="text-white text-decoration-none">Forgot Password?</a>
+            </div>
+  
+            <div class="d-grid gap-2">
+              <button 
+                type="submit" 
+                class="btn btn-outline-light btn-sm"
+                [disabled]="loginForm.invalid"
+              >
+                Login
+              </button>
+            </div>
+  
+            <div class="mt-4 text-center text-white">
+              Don't have an account? 
+              <a [routerLink]="['/register']" class="text-white text-decoration-none fw-bold">Register here</a>
+            </div>
+            <div class="mt-4 text-center text-white">
+              Have an OTP? 
+              <a [routerLink]="['/register-auth']" class="text-white text-decoration-none fw-bold">Complete Registration</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

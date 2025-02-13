@@ -1,0 +1,82 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="borough">Borough</label>
+          <div class="input-group">
+            <select 
+              class="form-select" 
+              id="borough"
+              [(ngModel)]="selectedBorough"
+              (change)="onBoroughChanged($event)">
+              <option value="0" selected>All</option>
+              <option *ngFor="let borough of filters.boroughs" [value]="borough.id">
+                {{borough.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="pcn">PCN</label>
+          <div class="input-group">
+            <select 
+              class="form-select" 
+              id="pcn"
+              [(ngModel)]="selectedPcn"
+              (change)="onPcnChanged($event)">
+              <option value="0" selected>All</option>
+              <option *ngFor="let pcn of filters.pcNs" [value]="pcn.id">
+                {{pcn.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="practice">Practice</label>
+          <div class="input-group">
+            <select 
+              class="form-select" 
+              id="practice"
+              [(ngModel)]="selectedPractice"
+              (change)="onpracticeChanged($event)">
+              <option value="0" selected>All</option>
+              <option *ngFor="let practice of filters.practices" [value]="practice.id">
+                {{practice.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-outline-light btn-sm" (click)="resetFilters()">Clear</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="practice">Indicators</label>
+          <div class="input-group">
+            <select 
+              class="form-select" 
+              id="indicator"
+              [(ngModel)]="selectedIndicator"
+              (change)="onIndicatorChanged($event)">
+              <option *ngFor="let indicator of uniqueIndicators" [value]="indicator">
+                {{indicator}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <app-column-chart #chart></app-column-chart>
+  </div>

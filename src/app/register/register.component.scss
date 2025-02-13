@@ -1,0 +1,78 @@
+:host {
+  display: block;
+  height: 100vh;
+}
+
+.form-container {
+  width: 80%;
+  max-width: 400px;
+}
+
+.form-label {
+  font-weight: 500;
+  
+  sup {
+    color: #ff4444;
+  }
+}
+
+.invalid-feedback {
+  font-size: 0.875rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.background-rb {
+    background-color: #0966AC;
+}
+
+.loginLink {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-light {
+  padding: 0.75rem;
+  font-weight: 500;
+  
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+  
+  .registration-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.form-control, .form-select {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  padding: 0.75rem;
+  
+  &:focus {
+    background-color: white;
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+  }
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    width: 100%;
+    max-width: 500px;
+  }
+}
